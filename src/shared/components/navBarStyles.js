@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderStyling = styled.nav`
     display: flex;
     flex-direction: row;
-    width: 90%;
+    width: 80%;
     height: 13vh;
     color: black;
     font-size: 1.5em;
@@ -19,15 +19,17 @@ export const NavTextBar = styled.div`
     width: 100%;
     align-items: center;
     justify-content: space-evenly;
+
 `
 
 export const ButtonStartNow = styled.button`
     background-color: #5CBA9B;    
     color: white;
     border-radius: 55px;
-    font-size: 1.2em;
+    font-size: 1em;
     padding: 0% 5%;
     border: none;
+    height: 10vh;
 
     :hover{
         background: #495BFA;

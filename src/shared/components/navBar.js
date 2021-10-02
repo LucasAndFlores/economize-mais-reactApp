@@ -1,16 +1,24 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { HeaderStyling,NavTextBar, ButtonStartNow } from './navBarStyles';
 import logo from '../img/logo_economize.jpg'
 
 const NavBarHome = () => {
+
+    const history = useHistory();
+
     return (
         <HeaderStyling>
      
             <NavTextBar>
             <p>Quem somos</p>
             <p>Contato</p>
-            <p>Depoimentos</p>                            
-            <ButtonStartNow type="button">Comece Agora</ButtonStartNow>
+            <p>Depoimentos</p> 
+                   
+            <ButtonStartNow onClick={() => {
+                history.push('/login')
+            }} type="button">Comece Agora</ButtonStartNow>
+
             </NavTextBar>
             
         </HeaderStyling>

@@ -10,8 +10,6 @@ export const LogoStyle = styled.img`
     margin-right: 5%;
 `
 
-
-
 export const TitleCenter = styled.h1`
     text-align: center;
     font-size: 1.5em;

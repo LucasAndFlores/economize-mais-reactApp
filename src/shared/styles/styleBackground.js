@@ -6,4 +6,5 @@ export const BackgroundContainerStyle = styled.body `
     height: 200vh;
     font-size: 16px;
     margin: 0px;
+    font-family: 'Roboto', sans-serif;
 `

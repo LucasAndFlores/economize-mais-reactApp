@@ -14,6 +14,21 @@ export const MenuModulos = styled.div`
     margin-top: 10px;
 `
 
+
+export const ImgHeader = styled.div`
+    display: flex;
+    margin-left: 24px;
+    background-color: #EFEFEF;
+`
+
+export const ImgLogo = styled.img`
+    width: 170px;
+    height: 100px;
+    background-color: #EFEFEF;
+
+`
+
+
 export const ItemMenu = styled.button`
     display: flex;
     flex-direction: row;
@@ -23,7 +38,7 @@ export const ItemMenu = styled.button`
     padding: 12px 15px;
     border: none;
     cursor: pointer;
-    background-color: #E5E5E5;
+    background-color: #EFEFEF;
     font-weight: bold;
     font-size: 14px;
 
@@ -38,3 +53,7 @@ export const TextoMenu = styled.text`
     margin-left: 18px;
     text-align: left;
 `
+
+
+
+

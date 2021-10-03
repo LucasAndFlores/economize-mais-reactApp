@@ -9,11 +9,8 @@ import {
 import InitialPage from './components/noLogged/home/InitialPage';
 import LoginPage from './components/noLogged/login/LoginPage';
 import Registerpage from './components/noLogged/register/RegisterPage';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from 'react-router-dom';
+import TransacoesPage from './components/logged/transacoes/TransacoesPage';
+
 import './font.css'
 
 function App() {

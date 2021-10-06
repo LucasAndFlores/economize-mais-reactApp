@@ -9,7 +9,7 @@ export const MasterContainer = styled.div`
 export const ColumnTwo = styled.div`
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     height: 100%;
     margin-top: 35px; 
     align-items: center;
@@ -52,12 +52,33 @@ export const TransactionHistory = styled.div`
 
 `
 
+export const MarginHistorico = styled.div`
+    margin-bottom: 20px;
+`
+export const PaymentHistory = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: flex-start;
+    background-color: white;
+    font-size: 16px;
+`
+
+
 export const LabelFormTransacoes = styled.label`
 `
 export const InputFormTransacoes = styled.input`
 `
 export const Button = styled.button`
+    border: none;
+    border-radius: 10%;
+    :hover{
+        background-color: #5CBA9B;
+        transition: 0.5s;
+    }
 `
 export const Select = styled.select`
 `
+
+
 

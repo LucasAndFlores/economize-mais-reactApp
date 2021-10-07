@@ -1,5 +1,4 @@
 import React from 'react';
-import { BackgroundContainerStyle } from '../../../shared/styles/styleBackground';
 import { MenuGeral, 
         MenuModulos,
         ItemMenu,
@@ -9,10 +8,13 @@ import { MenuGeral,
         } from '../../../shared/components/logged/menuLateralStyle'
 
 import logo from '../../img/logo2.jpg'
+import { useHistory } from 'react-router-dom';
 
 const MenuLateral = () => {
+
+    const userhistory = useHistory()
+
     return (
-        <BackgroundContainerStyle>
             <MenuGeral>  
                 <ImgHeader>
                     <ImgLogo href="/" src={logo}></ImgLogo>
@@ -43,14 +45,13 @@ const MenuLateral = () => {
                          alt="" width="20px" height="20px" ></img>                      
                         <TextoMenu> Objetivos </TextoMenu>
                     </ItemMenu>
-                    <ItemMenu onclick="location.href='/index/configuracoes'">  
+                    <ItemMenu onClick={() => userhistory.push('/configuracoes')}>  
                         <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB2aWV3Qm94PSIwIDAgMTI4IDEyOCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiPjxwYXRoIGQ9Ik0xMDkuNjc1LDU1LjU3NCw5OS41Nyw1My41MzZhMzYuODI1LDM2LjgyNSwwLDAsMC0zLjAyNC03LjI4MWw1LjcxLTguNTk0YTEuNzQ5LDEuNzQ5LDAsMCwwLS4yMi0yLjJsLTkuNDkyLTkuNDkyYTEuNzQ5LDEuNzQ5LDAsMCwwLTIuMi0uMjJsLTguNTk0LDUuNzFhMzYuODI1LDM2LjgyNSwwLDAsMC03LjI4MS0zLjAyNGwtMi4wMzgtMTAuMWExLjc0OSwxLjc0OSwwLDAsMC0xLjcxNS0xLjRINTcuMjg5YTEuNzQ5LDEuNzQ5LDAsMCwwLTEuNzE1LDEuNEw1My41MzYsMjguNDNhMzYuODI1LDM2LjgyNSwwLDAsMC03LjI4MSwzLjAyNGwtOC41OTQtNS43MWExLjc0OCwxLjc0OCwwLDAsMC0yLjIuMjJsLTkuNDkyLDkuNDkyYTEuNzQ5LDEuNzQ5LDAsMCwwLS4yMiwyLjJsNS43MSw4LjU5NGEzNi44MjUsMzYuODI1LDAsMCwwLTMuMDI0LDcuMjgxbC0xMC4xLDIuMDM4YTEuNzQ5LDEuNzQ5LDAsMCwwLTEuNCwxLjcxNVY3MC43MTFhMS43NDksMS43NDksMCwwLDAsMS40LDEuNzE1TDI4LjQzLDc0LjQ2NGEzNi44MjUsMzYuODI1LDAsMCwwLDMuMDI0LDcuMjgxbC01LjcxLDguNTk0YTEuNzQ5LDEuNzQ5LDAsMCwwLC4yMiwyLjJsOS40OTIsOS40OTJhMS43NDgsMS43NDgsMCwwLDAsMi4yLjIybDguNTk0LTUuNzFhMzYuODI1LDM2LjgyNSwwLDAsMCw3LjI4MSwzLjAyNGwyLjAzOCwxMC4xMDVhMS43NDksMS43NDksMCwwLDAsMS43MTUsMS40SDcwLjcxMWExLjc0OSwxLjc0OSwwLDAsMCwxLjcxNS0xLjRMNzQuNDY0LDk5LjU3YTM2LjgyNSwzNi44MjUsMCwwLDAsNy4yODEtMy4wMjRsOC41OTQsNS43MWExLjc1MiwxLjc1MiwwLDAsMCwyLjItLjIybDkuNDkyLTkuNDkyYTEuNzQ5LDEuNzQ5LDAsMCwwLC4yMi0yLjJsLTUuNzEtOC41OTRhMzYuODI1LDM2LjgyNSwwLDAsMCwzLjAyNC03LjI4MWwxMC4xMDUtMi4wMzhhMS43NDksMS43NDksMCwwLDAsMS40LTEuNzE1VjU3LjI4OUExLjc0OSwxLjc0OSwwLDAsMCwxMDkuNjc1LDU1LjU3NFptLTIuMSwxMy43LTkuNzU0LDEuOTY3YTEuNzQ3LDEuNzQ3LDAsMCwwLTEuMzQ2LDEuMjczLDMzLjQsMzMuNCwwLDAsMS0zLjUsOC40MTUsMS43NDgsMS43NDgsMCwwLDAsLjA1MywxLjg1Mmw1LjUxMSw4LjMtNy40NjUsNy40NjUtOC4zLTUuNTExYTEuNzQ4LDEuNzQ4LDAsMCwwLTEuODUyLS4wNTMsMzMuNCwzMy40LDAsMCwxLTguNDE1LDMuNSwxLjc0NywxLjc0NywwLDAsMC0xLjI3MywxLjM0NmwtMS45NjcsOS43NTRINTguNzIxbC0xLjk2Ny05Ljc1NGExLjc0NywxLjc0NywwLDAsMC0xLjI3My0xLjM0NiwzMy40LDMzLjQsMCwwLDEtOC40MTUtMy41LDEuNzUxLDEuNzUxLDAsMCwwLTEuODUyLjA1M2wtOC4zLDUuNTExLTcuNDY1LTcuNDY1LDUuNTExLTguM2ExLjc0OCwxLjc0OCwwLDAsMCwuMDUzLTEuODUyLDMzLjQsMzMuNCwwLDAsMS0zLjQ5NS04LjQxNSwxLjc0NywxLjc0NywwLDAsMC0xLjM0Ni0xLjI3M2wtOS43NTQtMS45NjdWNTguNzIxbDkuNzU0LTEuOTY3YTEuNzQ3LDEuNzQ3LDAsMCwwLDEuMzQ2LTEuMjczLDMzLjQsMzMuNCwwLDAsMSwzLjQ5NS04LjQxNSwxLjc0OCwxLjc0OCwwLDAsMC0uMDUzLTEuODUybC01LjUxMS04LjMsNy40NjUtNy40NjUsOC4zLDUuNTExYTEuNzQ2LDEuNzQ2LDAsMCwwLDEuODUyLjA1MywzMy40LDMzLjQsMCwwLDEsOC40MTUtMy40OTUsMS43NDcsMS43NDcsMCwwLDAsMS4yNzMtMS4zNDZsMS45NjctOS43NTRINjkuMjc5bDEuOTY3LDkuNzU0YTEuNzQ3LDEuNzQ3LDAsMCwwLDEuMjczLDEuMzQ2LDMzLjQsMzMuNCwwLDAsMSw4LjQxNSwzLjQ5NSwxLjc0NiwxLjc0NiwwLDAsMCwxLjg1Mi0uMDUzbDguMy01LjUxMSw3LjQ2NSw3LjQ2NS01LjUxMSw4LjNhMS43NDgsMS43NDgsMCwwLDAtLjA1MywxLjg1MiwzMy40LDMzLjQsMCwwLDEsMy41LDguNDE1LDEuNzQ3LDEuNzQ3LDAsMCwwLDEuMzQ2LDEuMjczbDkuNzU0LDEuOTY3WiIvPjxwYXRoIGQ9Ik02NCwzOS44NzdBMjQuMTIzLDI0LjEyMywwLDEsMCw4OC4xMjMsNjQsMjQuMTUxLDI0LjE1MSwwLDAsMCw2NCwzOS44NzdabTAsNDQuNzQ2QTIwLjYyMywyMC42MjMsMCwxLDEsODQuNjIzLDY0LDIwLjY0NywyMC42NDcsMCwwLDEsNjQsODQuNjIzWiIvPjxwYXRoIGQ9Ik02NCw0Ny4yMTVBMTYuNzg1LDE2Ljc4NSwwLDEsMCw4MC43ODUsNjQsMTYuOCwxNi44LDAsMCwwLDY0LDQ3LjIxNVptMCwzMC4wN0ExMy4yODUsMTMuMjg1LDAsMSwxLDc3LjI4NSw2NCwxMy4zLDEzLjMsMCwwLDEsNjQsNzcuMjg1WiIvPjwvc3ZnPgo="
                          alt="" width="20px" height="20px" ></img>                    
                         <TextoMenu> Configurações </TextoMenu>
                     </ItemMenu>
                 </MenuModulos>
             </MenuGeral>
-        </BackgroundContainerStyle>
     );
 }
 

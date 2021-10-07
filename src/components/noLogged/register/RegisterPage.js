@@ -18,7 +18,7 @@ const Registerpage = () => {
             <MainContainer>
                 <LeftContainer>
                     <WelcomeText>
-                        Cadastre-se agora e comece a controlar as finanças !
+                        Cadastre-se agora e comece a controlar as finanças!
                     </WelcomeText>
                     <LabelForm for="userName">
                         Nome

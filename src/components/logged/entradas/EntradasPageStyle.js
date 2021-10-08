@@ -6,46 +6,70 @@ export const MasterContainer = styled.div`
     background-color:  #EFEFEF;
     width: 100vw;
 `
-
-
-export const Main = styled.div`
+export const Container = styled.div`
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* justify-content: space-around; */
+    margin-left:15%;
+    margin-top: 35px;
 `
-export const MainSection = styled.section`
+export const ContainerForm = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
-`
-export const MainSectionH1 = styled.h1`
-    font-size: 36px;
-    text-align: center;
-`
-
-export const ImgHero = styled.img`
-    height: 358px;
-    width: 100%;
-    /* margin-bottom: 70px; */
-    justify-content: center;
-
-`
-export const MainArticle = styled.article`
-    display: flex;
-    flex-direction: row;
     justify-content: space-around;
-    padding: 0 20px;
-    width: 100%;
-
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 60%;
 `
 
-export const ArticleDiv = styled.div`
+export const EspancamentoDiv = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url(img/Ellipse\ 2.png);
-    height: 108px;
-    width: 117px;
-    margin-bottom: 28px;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 60%;
 `
 
+export const GenericDiv = styled.div`
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+`
+
+export const LabelDiv = styled.div`
+    margin-bottom: 18px;
+`
+
+export const CartoesForm = styled.div`
+    margin-left: 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+export const FormatarForm = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+export const Form = styled.div`
+    flex-grow: 1;
+`
+export const InputCartoes = styled.div`
+    margin-left: 0%;
+`
+export const GenericLabel = styled.label`
+    font-size: 1rem;
+    font-style: bold;
+    font-weight: bold;
+`
+
+export const H1 = styled.h1`
+`

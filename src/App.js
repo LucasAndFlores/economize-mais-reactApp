@@ -12,6 +12,7 @@ import Registerpage from './components/noLogged/register/RegisterPage';
 import TransacoesPage from './components/logged/transacoes/TransacoesPage';
 import Homeapp from './components/logged/homeApp/HomeApp';
 import Configpage from './components/logged/configuracoes/ConfigPage';
+import Cartoespage from './components/logged/cartoes/CartoesPage';
 
 import './font.css'
 
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/transacoes" exact component={TransacoesPage} />
                 <Route path="/home" exact component={Homeapp} />
                 <Route path="/configuracoes" exact component={Configpage} />
+                <Route path="/cartoes" exact component={Cartoespage} />
             </Switch>
 
         </Router>

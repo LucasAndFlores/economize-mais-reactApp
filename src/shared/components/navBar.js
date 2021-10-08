@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { HeaderStyling,NavTextBar, ButtonStartNow } from './navBarStyles';
-import logo from '../img/logo_economize.jpg'
 
 const NavBarHome = () => {
 

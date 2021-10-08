@@ -10,6 +10,7 @@ import InitialPage from './components/noLogged/home/InitialPage';
 import LoginPage from './components/noLogged/login/LoginPage';
 import Registerpage from './components/noLogged/register/RegisterPage';
 import TransacoesPage from './components/logged/transacoes/TransacoesPage';
+import EntradasPage from './components/logged/entradas/EntradasPage';
 
 import './font.css'
 
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/login" exact component={LoginPage} />
                 <Route path="/cadastro" exact component={Registerpage} />
                 <Route path="/transacoes" exact component={TransacoesPage} />
+                <Route path="/entradas" exact component={EntradasPage} />
             </Switch>
 
         </Router>

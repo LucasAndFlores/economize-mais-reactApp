@@ -14,6 +14,7 @@ import Homeapp from './components/logged/homeApp/HomeApp';
 import Configpage from './components/logged/configuracoes/ConfigPage';
 import ObjetivosPage from './components/logged/objetivos/ObjetivosPage';
 import Cartoespage from './components/logged/cartoes/CartoesPage';
+import EntradasPage from './components/logged/entradas/EntradasPage';
 
 import './font.css'
 
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/configuracoes" exact component={Configpage} />
                 <Route path="/objetivos" exact component={ObjetivosPage} />
                 <Route path="/cartoes" exact component={Cartoespage} />
+                <Route path="/entradas" exact component={EntradasPage} />
 
             </Switch>
 

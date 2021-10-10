@@ -46,7 +46,6 @@ export const FormContainer = styled.div `
 
 export const LabelFormLogin = styled.label `
     width: 30%;
-    margin-right: 30%;
     font-weight: bold;
     font-size: 1.5em;
 `
@@ -73,6 +72,7 @@ export const TextOfButtons = styled.h3 `
 `
 export const Buttons = styled.button `
     color: white; 
+    border-radius: 25px;
     background-color: #5CBA9B;
     font-size: 1.2em;
     font-weight: bold;

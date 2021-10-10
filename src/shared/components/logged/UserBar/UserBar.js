@@ -8,11 +8,14 @@ import {Email} from '@styled-icons/material/Email'
 import {Bell} from '@styled-icons/evaicons-solid/Bell'
 
 const UserBar = () => {
+
+    let userName = localStorage.getItem('user_name')
+
     return (
         <UserBarContainer>
             <UserAlt size="30" />
             <TextUserWelcome>
-                Olá user.name, seja bem vindo
+                Olá {userName}, seja bem vindo
             </TextUserWelcome>
             
             <Email size="30" />

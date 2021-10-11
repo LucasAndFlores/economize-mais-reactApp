@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../contexts/auth';
 import { BackgroundContainerStyle } from '../../../shared/styles/styleBackground'
 import { 
     MainContainer,
     LeftContainer,
     RightContainer,
     WelcomeText,
-    InputForm,
     LabelForm, 
     RegisterButton,
     ImgRightContainer,
 } from './RegisterPageStyles'
 import handImage from '../../../shared/img/hand.png'
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useHistory } from "react-router-dom";
+import axios from 'axios'
+import schema from './schemaRegister';
+import './FormFormik.css'
+
 
 const Registerpage = () => {
+
+    const history = useHistory()
+    const { setAuthenticated } = useContext(AuthContext)
+
+   async function onSubmit (values, action) {
+            let userPost = await axios.post(process.env.REACT_APP_API_URL_USERS_POST, values)
+            localStorage.setItem('token', userPost.data.token)
+            localStorage.setItem('user_id', userPost.data.message.id)
+            localStorage.setItem('user_name', userPost.data.message.nome)
+            setAuthenticated(true)
+            action.resetForm()
+            history.push('/home')
+    }
+
+
+
     return (
         <BackgroundContainerStyle>
             <MainContainer>
@@ -20,31 +42,65 @@ const Registerpage = () => {
                     <WelcomeText>
                         Cadastre-se agora e comece a controlar as finanças!
                     </WelcomeText>
-                    <LabelForm for="userName">
-                        Nome
-                    </LabelForm>
-                    <InputForm name="nome" id="userName" type="text" required />
-                    <LabelForm for="userSobrenome">
-                        Sobrenome
-                    </LabelForm>
-                    <InputForm name="sobrenome" id="userSobrenome" type="text" required />
-                    <LabelForm for="userEmail">
-                        Email
-                    </LabelForm>
-                    <InputForm name="email" id="userEmail" type="text" required />
-                    <LabelForm for="userDataDeNasc">
-                        Data de Nascimento
-                    </LabelForm>
-                    <InputForm name="datanasc" id="userDataDeNasc" type="date" />
-                    <LabelForm for="userPassword">
-                        Crie sua senha
-                    </LabelForm>
-                    <InputForm name="senha" id="userPassword" type="text" required />
-                    <LabelForm for="userPasswordConfirm">
-                        Confirme sua senha
-                    </LabelForm>
-                    <InputForm name="senha_confirmada" id="userPasswordConfirm" type="text" required />
-                    <RegisterButton> Cadastrar </RegisterButton>
+
+                    
+                    <Formik 
+                        validationSchema={schema}
+                        onSubmit={onSubmit}
+                        initialValues={{
+                            nome:'',
+                            sobrenome: '',
+                            email: '',
+                            telefone: "",
+                            datanasc: '',
+                            senha: ''
+                        }}
+
+                    
+                            render={({values, errors, touched, isValid}) => (
+                                <Form className="FormAlign">
+                                        <LabelForm>
+                                        Nome
+                                        </LabelForm>
+                                        <Field name="nome" type="text" />
+                                        <ErrorMessage name="nome"/>
+                                
+                                        <LabelForm for="sobrenome">
+                                        Sobrenome
+                                        </LabelForm>
+                                        <Field name="sobrenome" type="text" />
+                                        <ErrorMessage name="sobrenome"/>
+
+                                        <LabelForm for="email">
+                                        Email
+                                        </LabelForm>
+                                        <Field name="email" type="text" />
+                                        <ErrorMessage name="email"/>
+
+                                        <LabelForm for="telefone">
+                                        Telefone
+                                        </LabelForm>
+                                        <Field name="telefone" type="text" />
+                                        <ErrorMessage name="telefone"/>
+
+                                        <LabelForm for="datanasc">
+                                        Data de Nascimento
+                                        </LabelForm>
+                                        <Field name="datanasc" type="date" />
+                                        <ErrorMessage name="datanasc"/>
+
+                                        <LabelForm for="senha">
+                                        Crie sua senha
+                                        </LabelForm>
+                                        <Field name="senha" type="text" />
+                                        <ErrorMessage name="senha"/>
+
+                                        <RegisterButton type="submit" disabled={!isValid} > Cadastrar </RegisterButton>
+
+                                </Form>
+                            )}
+                    
+                    />  
                 </LeftContainer>
                 <RightContainer>
                     <ImgRightContainer src={handImage} />

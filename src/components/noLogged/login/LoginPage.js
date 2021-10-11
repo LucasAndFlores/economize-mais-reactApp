@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios'
 import NavBarHome from '../../../shared/components/navBar'
 import { BackgroundContainerStyle } from '../../../shared/styles/styleBackground'
 import { LogoStyle, HeaderContainer } from '../home/initialPageStyle'
@@ -11,20 +12,38 @@ import {
     ProfileIcon,
     ButtonsContainer,
     FormContainer,
-    InputFormLogin,
     LabelFormLogin,
     TextOfButtons,
     Buttons
 } from './LoginPageStyles'
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import logo from '../../../shared/img/logo_economize.jpg'
 import imageright from '../../../shared/img/xcomo-controlar-a-ansiedade.png.pagespeed.ic 1.png'
 import {UserAlt} from '@styled-icons/fa-solid'
+import './LoginFormFormik.css'
+import  schemaLogin  from './schemaLogin'
+import { useContext } from 'react';
+import { AuthContext } from '../../../contexts/auth';
 
 const LoginPage = () => {
 
+    const { setAuthenticated } = useContext(AuthContext)
     const history = useHistory();
+
+
+    async function onSubmit (values, action) {
+        const madeLogin = await axios.post("http://localhost:3030/v1/usuarios/autorizacao", values)
+        localStorage.setItem("token", madeLogin.data.token)      
+        action.resetForm()
+        setAuthenticated(true)
+        history.push('/home')
+
+    }
     
     return (
+
+
+
         <BackgroundContainerStyle>
             <HeaderContainer>
             <LogoStyle src={logo} />
@@ -39,14 +58,36 @@ const LoginPage = () => {
                           <UserAlt size="60" />
                     </ProfileIcon>
                     <FormContainer>
-                          <LabelFormLogin htmlFor="emailLogin"> Insira seu email </LabelFormLogin>
-                          <InputFormLogin id="emailLogin" name="user_login" type="text"></InputFormLogin> 
-                          <LabelFormLogin htmlFor="passwordLogin"> Insira sua senha </LabelFormLogin>
-                          <InputFormLogin id="passwordLogin" name="user_senha" type="text"></InputFormLogin>  
+                            <Formik 
+                                validationSchema={schemaLogin}
+                                onSubmit={onSubmit}
+                                initialValues={{
+                                     email: '',
+                                     senha: ''
+                                 }}
+                            
+                                 render={({values, errors, touched, isValid}) => (
+                                    <Form className="LoginForm">
+                                            <LabelFormLogin>
+                                            Insira seu email
+                                            </LabelFormLogin>
+                                            <Field name="email" type="text" />
+                                            <ErrorMessage name="email"/>
+
+                                            <LabelFormLogin>
+                                            Insira sua senha
+                                            </LabelFormLogin>
+                                            <Field name="senha" type="text" />
+                                            <ErrorMessage name="senha"/>
+    
+                                            <Buttons type="submit" > LOGIN </Buttons>
+                                    </Form>
+                                )}
+                            
+                            />
                     </FormContainer>
                     <ButtonsContainer>
                             <TextOfButtons>Esqueceu sua senha ?</TextOfButtons>
-                            <Buttons> LOGIN </Buttons>
                             <TextOfButtons> Ainda não tem cadastro ? </TextOfButtons>
                             <Buttons onClick={() => { history.push('/cadastro') }}> Crie uma conta ! </Buttons>
                     </ButtonsContainer>

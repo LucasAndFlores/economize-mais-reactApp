@@ -37,10 +37,6 @@ export const LabelForm = styled.label `
 
 `
 
-export const InputForm = styled.input `
-    width: 40%;
-    height: 6vh; 
-`
 export const RegisterButton = styled.button `
     font-size: 1.5em;
     color: white;
@@ -54,4 +50,10 @@ export const RegisterButton = styled.button `
 export const ImgRightContainer = styled.img `
     width: 80%;
     height: 80vh
+`
+
+export const TesteAlinhamento = styled.div`
+    display: flex;
+    height: 100vh;
+    width: 60;
 `

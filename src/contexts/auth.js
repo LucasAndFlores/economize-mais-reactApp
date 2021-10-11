@@ -13,7 +13,7 @@ function AuthProvider ({ children }) {
     useEffect(() => {
         const HasToken = localStorage.getItem("token")
         if(HasToken) {
-        api.defaults.headers.Authorization = `Bearer : ${HasToken}`  
+        api.defaults.headers.Authorization = `Bearer ${HasToken}`  
         setAuthenticated(true)
         }
         setLoading(false)

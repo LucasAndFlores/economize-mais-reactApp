@@ -14,9 +14,17 @@ import {
 import Cardelement from './components/CardElement';
 import MenuLateral from '../../../shared/components/logged/menuLateral';
 import UserBar from '../../../shared/components/logged/UserBar/UserBar';
+import { api } from '../../../services/api';
+
 
 
 const Cartoespage = () => {
+
+    api.get("/cartoes").then(results => {
+        console.log(results)
+    })
+
+
     return (
         <BackgroundContainerStyle>
             <MenuLateral />

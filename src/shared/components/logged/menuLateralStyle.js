@@ -14,7 +14,6 @@ export const MenuModulos = styled.div`
     margin-top: 10px;
 `
 
-
 export const ImgHeader = styled.div`
     display: flex;
     margin-left: 24px;

@@ -24,7 +24,7 @@ export const RightContainer = styled.div `
     flex-direction: column;
     align-items: center;
 `
-export const FormCardRegister = styled.div`
+export const Form = styled.div`
     width: 80%;
     height: 95vh;
     background-color: white;

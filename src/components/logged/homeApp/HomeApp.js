@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BackgroundContainerStyle } from '../../../shared/styles/styleBackground'
 import {
     MainContainerHome, 
@@ -11,8 +11,12 @@ import {
 } from './HomeAppStyles'
 import MenuLateral from '../../../shared/components/logged/menuLateral';
 import UserBar from '../../../shared/components/logged/UserBar/UserBar';
+import { AuthContext } from '../../../contexts/auth';
 
 const Homeapp = () => {
+
+
+
     return (
         <BackgroundContainerStyle>
             <MenuLateral />

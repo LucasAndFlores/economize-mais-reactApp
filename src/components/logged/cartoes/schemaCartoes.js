@@ -5,18 +5,20 @@ let schema = Yup.object().shape({
 
     digitos: Yup.number().min(4,'Deve ter 4 digitos')
     .required('Campo obrigatório'),
-    //.max(4, 'Deve ter 4 digitos'),
+    
+   // digitos: Yup.number().max(4,'Deve ter 4 digitos')
+   // .required('Campo obrigatório'),
 
     limite: Yup.number().min(1,'Não pode ser menor do que 1')
     .required('Campo obrigatório'),
     
     
-    data_de_pagamento: Yup.number().min(1,'Não pode ser menor do que 1')
+    dataDePagamento: Yup.number().min(1,'Não pode ser menor do que 1')
     .required('Campo obrigatório'),
-    //.max(30, 'Não pode ser maior do que 30'),
-    
-    //tipo: Yup.string().oneOf('débito','crédito')
-    //.required('Campo obrigatório'),
+
+    tipo: Yup.string().min(1,'Não pode ser menor do que 1')
+    .required('Campo obrigatório'),
+  
     
     
 })

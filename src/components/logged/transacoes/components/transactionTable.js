@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import { BackgroundContainerStyle } from '../../../../shared/styles/styleBackground';
-
-import { api } from '../../../../services/api'
+import React,{useState, useEffect, useCallback} from 'react';
+import { api } from '../../../../services/api';
+import {Edit} from '@styled-icons/fa-solid/Edit'
+import PutModal from './PutModal';
 
 import {
     TabelaGastos,
@@ -9,19 +9,9 @@ import {
 } from './transactionTablelStyle'
 
 
-const TransactionTable = () => {
-    const [transactions, setTransactions] = useState([])
-
-    const fkUsuarioId = localStorage.getItem("user_id")
-
-    useEffect (() => 
-      
-        api.get(`transacoes/${fkUsuarioId}`).then(
-            (results) => setTransactions(results.data)
-        )
-
-    ,[transactions]) 
-
+const TransactionTable = (props) => {
+    const [open, setOpen] = useState(false)
+    const [close, setClose] = useState(true)
 
 
 
@@ -39,7 +29,7 @@ const TransactionTable = () => {
                     </thead>
                     
                     <tbody>
-                        {transactions.map(object => (
+                        {props.transactions.transactions.map(object => (
 
                             <tr key={object.id}>
                                 <td>
@@ -56,7 +46,7 @@ const TransactionTable = () => {
                                 </td>
 
                                 <td>
-                                   <button>Teste</button>
+                                   <button type="button"  onClick={() => setOpen(true)} > <Edit size="20"/> <PutModal putrefference={object} open={open} /> </button>
                                 </td>
 
                                 <td>

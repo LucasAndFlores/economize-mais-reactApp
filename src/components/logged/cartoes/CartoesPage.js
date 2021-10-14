@@ -20,9 +20,7 @@ import { api } from '../../../services/api';
 
 const Cartoespage = () => {
 
-    api.get("/cartoes").then(results => {
-        console.log(results)
-    })
+   
 
 
     return (

@@ -34,7 +34,7 @@ const Cartoespage = () => {
 
 
 
-    useEffect(() => {
+    useEffect( () => {
 
         console.log(fkUsuarioId);
         api.get(`cartoes/${fkUsuarioId}`).then(
@@ -49,11 +49,13 @@ const Cartoespage = () => {
 
 
     async function onSubmit(values, action) {
+        
         values.fkUsuarioId = fkUsuarioId;
 
         const results = api.post("/cartoes", values).then(results => {
             console.log(results);
         });
+        setCartoes();
         action.resetForm();
 
     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import schemaTransaction  from './schemaTransaction'
 import MenuLateral from '../../../shared/components/logged/menuLateral';
@@ -11,10 +11,8 @@ import {
     MarginResumo,
     EstiloInput,
     LabelFormTransacoes,
-    InputFormTransacoes,
     TransactionHistory,
     Button,
-    Select,
     MarginHistorico,
     PaymentHistory,
     
@@ -25,6 +23,8 @@ import './TransactionFormFormik.css'
 import adicionar from '../../../shared/img/add.png'
 
 const TransacoesPage = () => {
+
+    const [transactions, setTransactions] = useState([])
 
     const fkUsuarioId = localStorage.getItem("user_id")
 
@@ -37,12 +37,20 @@ const TransacoesPage = () => {
         fkUsuarioId
     }
     
+    const getTransactions = useCallback(async () => {
+        let response = await api.get(`transacoes/${fkUsuarioId}`)
+        setTransactions(response.data)
+    })
+
+    useEffect(() => {
+        getTransactions()
+    },[])
+
     async function onSubmit (values, action) {
-        console.log(values)
-        const registredTransactions = await api.post("transacoes", values)
-        console.log(registredTransactions)
-        // action.resetForm()
+        let registredTransactions = await api.post("transacoes", values)
+       let getNewTransactions = await getTransactions()
     }
+
     return (
         <MasterContainer>
             <MenuLateral />
@@ -114,11 +122,6 @@ const TransacoesPage = () => {
 
 
 
-
-
-
-
-
                                     )}
                                        
                             
@@ -132,7 +135,10 @@ const TransacoesPage = () => {
                     <MarginHistorico>
                         <h2>Histórico de transações</h2>
                         <PaymentHistory>
-                            <TransactionTable />
+
+                            <TransactionTable transactions={{transactions}} >
+                                    
+                             </TransactionTable>
                         </PaymentHistory>
                     </MarginHistorico>
                 </TransactionHistory>

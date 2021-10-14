@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../contexts/auth';
 import { BackgroundContainerStyle } from '../../../shared/styles/styleBackground'
 import { 
     MainContainer,
@@ -20,16 +21,15 @@ import './FormFormik.css'
 const Registerpage = () => {
 
     const history = useHistory()
+    const { setAuthenticated } = useContext(AuthContext)
 
    async function onSubmit (values, action) {
             let userPost = await axios.post(process.env.REACT_APP_API_URL_USERS_POST, values)
-
             localStorage.setItem('token', userPost.data.token)
             localStorage.setItem('user_id', userPost.data.message.id)
             localStorage.setItem('user_name', userPost.data.message.nome)
-
+            setAuthenticated(true)
             action.resetForm()
-
             history.push('/home')
     }
 

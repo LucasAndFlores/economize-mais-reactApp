@@ -22,15 +22,20 @@ import imageright from '../../../shared/img/xcomo-controlar-a-ansiedade.png.page
 import {UserAlt} from '@styled-icons/fa-solid'
 import './LoginFormFormik.css'
 import  schemaLogin  from './schemaLogin'
+import { useContext } from 'react';
+import { AuthContext } from '../../../contexts/auth';
 
 const LoginPage = () => {
 
+    const { setAuthenticated } = useContext(AuthContext)
     const history = useHistory();
+
 
     async function onSubmit (values, action) {
         const madeLogin = await axios.post("http://localhost:3030/v1/usuarios/autorizacao", values)
-        localStorage.setItem('token', madeLogin.data.token)      
+        localStorage.setItem("token", madeLogin.data.token)      
         action.resetForm()
+        setAuthenticated(true)
         history.push('/home')
 
     }

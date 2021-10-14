@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import schema from "./schemaCartoes";
 import { useHistory } from "react-router-dom";
+import { api } from '../../../services/api';
 
 import { BackgroundContainerStyle } from "../../../shared/styles/styleBackground";
 import {
@@ -21,17 +22,28 @@ import MenuLateral from "../../../shared/components/logged/menuLateral";
 import UserBar from "../../../shared/components/logged/UserBar/UserBar";
 import "./FormFormik.css";
 
+
+
 const Cartoespage = () => {
-    const history = useHistory();
+
+    const [cartoes, setCartoes] = useState([]);
+
+    useEffect(() => {
+        const results = api.get("/cartoes").then(results => {
+            console.log(results);
+        });
+       console.log(results)
+    }, [cartoes]);
 
     async function onSubmit(values, action) {
-        values.fkUsuarioId = localStorage.getItem("user_id"); 
-        
-        let res = await axios.post(
-            process.env.REACT_APP_API_URL_CARDS,
-            values
-        );
+        values.fkUsuarioId = localStorage.getItem("user_id");
+        console.log(localStorage.getItem("user_id"));
+
+        const results = api.get("/cartoes",values).then(results => {
+            console.log(results);
+        });
         action.resetForm();
+
     }
     return (
         <BackgroundContainerStyle>
@@ -56,7 +68,7 @@ const Cartoespage = () => {
                                 <Field id="CardName" name="name" type="text" required />
                                 <ErrorMessage name="name" />
                                 <CardLabel for="CardDigits">4 últimos dígitos</CardLabel>
-                                <Field
+                                <Field className="Input"
                                     id="CardDigits"
                                     name="digitos"
                                     type="number"
@@ -64,7 +76,7 @@ const Cartoespage = () => {
                                 />
                                 <ErrorMessage name="digitos" />
                                 <CardLabel for="CardLimitBudget">Limite</CardLabel>
-                                <Field
+                                <Field className="Input"
                                     id="CardLimitBudget"
                                     name="limite"
                                     type="number"
@@ -72,7 +84,7 @@ const Cartoespage = () => {
                                 />
                                 <ErrorMessage name="limite" />
                                 <CardLabel for="CardPaymentDay">Data de pagamento</CardLabel>
-                                <Field
+                                <Field className="Input"
                                     id="CardPaymentDay"
                                     name="dataDePagamento"
                                     type="number"
@@ -80,7 +92,7 @@ const Cartoespage = () => {
                                 />
                                 <ErrorMessage name="dataDePagamento" />
                                 <CardLabel for="CardType"> Tipo </CardLabel>
-                                <Field name="tipo" id="CardType" as="Select">
+                                <Field className="Input" name="tipo" id="CardType" as="Select">
                                     <option value="debito">Débito</option>
                                     <option value="credito">Crédito</option>
                                 </Field>
@@ -93,6 +105,7 @@ const Cartoespage = () => {
                 </LeftContainer>
                 <RightContainer>
                     <Cardelement />
+
                 </RightContainer>
             </MainContainer>
         </BackgroundContainerStyle>

@@ -13,3 +13,9 @@ input {
     box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.2);
 }
 
+.Input {
+    width: 40%;
+    height: 6vh; 
+}
+
+

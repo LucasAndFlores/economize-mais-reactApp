@@ -26,20 +26,32 @@ import "./FormFormik.css";
 
 const Cartoespage = () => {
 
-    const [cartoes, setCartoes] = useState([]);
+    const fkUsuarioId = localStorage.getItem("user_id")
+
+
+    const [cartoes, setCartoes] = useState([])
+
+
+
 
     useEffect(() => {
-        const results = api.get("/cartoes").then(results => {
-            console.log(results);
-        });
-       console.log(results)
-    }, [cartoes]);
+
+        console.log(fkUsuarioId);
+        api.get(`cartoes/${fkUsuarioId}`).then(
+
+            (results) => {
+                setCartoes(results.data.todosCartoes)
+                console.log(results.data.todosCartoes);
+            }
+        )
+
+    }, [setCartoes]);
+
 
     async function onSubmit(values, action) {
-        values.fkUsuarioId = localStorage.getItem("user_id");
-        console.log(localStorage.getItem("user_id"));
+        values.fkUsuarioId = fkUsuarioId;
 
-        const results = api.get("/cartoes",values).then(results => {
+        const results = api.post("/cartoes", values).then(results => {
             console.log(results);
         });
         action.resetForm();
@@ -104,7 +116,12 @@ const Cartoespage = () => {
                     />
                 </LeftContainer>
                 <RightContainer>
-                    <Cardelement />
+                    {cartoes.map(object => (
+                        <Cardelement cartao={object} />
+
+                    )
+                    )
+                    }
 
                 </RightContainer>
             </MainContainer>

@@ -33,7 +33,10 @@ const LoginPage = () => {
 
     async function onSubmit (values, action) {
         const madeLogin = await axios.post("http://localhost:3030/v1/usuarios/autorizacao", values)
-        localStorage.setItem("token", madeLogin.data.token)      
+        console.log(madeLogin)
+        localStorage.setItem("token", madeLogin.data.token) 
+        localStorage.setItem("user_id", madeLogin.data.id) 
+        localStorage.setItem("user_name", madeLogin.data.nome)    
         action.resetForm()
         setAuthenticated(true)
         history.push('/home')

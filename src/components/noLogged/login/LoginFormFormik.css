@@ -6,3 +6,8 @@
     align-items: center;
     justify-content: space-evenly;
 }
+
+.LoginForm input {
+    width: 40%;
+    height: 5vh;
+}

@@ -5,13 +5,14 @@ export const MasterContainer = styled.div`
     flex-direction: row;
     background-color:  #EFEFEF;
     width: 100vw;
+    font-family: 'Roboto', sans-serif;
 `
 export const ColumnTwo = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
-    margin-top: 35px; 
+    margin-top: 7%; 
     align-items: center;
 `
 export const MarginResumo = styled.div`
@@ -30,13 +31,14 @@ export const RegistroDespesas = styled.div`
     align-items: center;
 `
 export const EstiloInput = styled.div`
+    width: 30%;
     margin: 0 10px;
     display: flex;
     line-height: 2;
     flex-direction: column;
     align-items: center;
     font-weight: 700;
-
+    
 `
 
 export const TransactionHistory = styled.div`
@@ -68,6 +70,7 @@ export const PaymentHistory = styled.div`
 export const LabelFormTransacoes = styled.label`
 `
 export const InputFormTransacoes = styled.input`
+    width: 80%
 `
 export const Button = styled.button`
     border: none;

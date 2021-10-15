@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useCallback} from 'react';
 import { api } from '../../../../../services/api';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import schemaTransaction from '../../schemaTransaction'
@@ -12,7 +12,15 @@ import './formPutStyles.css'
 
 const PutModal = (props) => {
 
-    if (!props.open) {
+    const isOpen = props.open
+
+    const autoClose = props.setshow
+
+    const refreshTransaction = props.refreshtransaction
+
+    const transactioID = props.putrefference.id
+
+    if (isOpen === false) {
         return null
     } 
     // console.log(props)
@@ -27,10 +35,12 @@ const PutModal = (props) => {
         fkUsuarioId: props.putrefference.fkUsuarioId
     }
 
-
     async function onSubmit (values, action) {
-        console.log(values.id)
-        let updateTransaction = await api.put(`transacoes/${values.id}`, values)
+        console.log(values)
+        let updateTransaction = await api.put(`transacoes/${transactioID}`, values)
+        console.log(updateTransaction)
+        refreshTransaction()
+        autoClose()
     }
 
     return reactDom.createPortal(

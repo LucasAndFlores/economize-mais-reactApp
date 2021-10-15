@@ -23,12 +23,5 @@ export const ModalStyle = styled.div `
    z-index: 1000;
    display: flex;
     justify-content: center;
-    
-    label {
-        font-weight: bold;
-    }
 
-    input {
-        height: 3vh;
-    }
 `

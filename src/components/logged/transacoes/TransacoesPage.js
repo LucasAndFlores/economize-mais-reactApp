@@ -136,7 +136,7 @@ const TransacoesPage = () => {
                         <h2>Histórico de transações</h2>
                         <PaymentHistory>
 
-                            <TransactionTable transactions={{transactions}} >
+                            <TransactionTable transactions={{transactions}} gettransactions={getTransactions} >
                                     
                              </TransactionTable>
                         </PaymentHistory>

@@ -15,6 +15,7 @@ import Cartoespage from './components/logged/cartoes/CartoesPage';
 import Loader from './shared/components/loader'
 import EntradasPage from './components/logged/entradas/EntradasPage';
 import ObjetivosPage from './components/logged/objetivos/ObjetivosPage';
+import PutModal from './components/logged/transacoes/components/PutModal';
 
 import { AuthContext } from './contexts/auth';
 
@@ -44,6 +45,7 @@ export default function Routes() {
         <Route path="/cadastro" exact component={Registerpage} />
         <LoggedRouter isPrivate path="/home" exact component={Homeapp} />
         <LoggedRouter isPrivate path="/transacoes" exact component={TransacoesPage} />
+        <LoggedRouter isPrivate path="/transacoes/editar" exact component={PutModal} />
         <LoggedRouter isPrivate path="/cartoes" exact component={Cartoespage} />
         <LoggedRouter isPrivate path="/entradas" exact component={EntradasPage} />
         <LoggedRouter isPrivate path="/objetivos" exact component={ObjetivosPage} />

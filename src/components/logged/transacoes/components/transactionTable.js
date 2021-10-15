@@ -1,5 +1,4 @@
 import React,{useState, useEffect, useCallback} from 'react';
-import { api } from '../../../../services/api';
 import {Edit} from '@styled-icons/fa-solid/Edit'
 import PutModal from './PutModal';
 
@@ -10,10 +9,20 @@ import {
 
 
 const TransactionTable = (props) => {
-    const [open, setOpen] = useState(false)
-    const [close, setClose] = useState(true)
+    const [selectedElement, setSelectedElement ] = useState()
+    const [show, setShow] = useState(false)
 
+    const handleShow = useCallback(() => {
+        setShow(!show)
+        console.log('erro no handle show')
+    }, [])
 
+    const handleClick = useCallback((e, object) => { 
+            e.preventDefault()
+            setSelectedElement(object)
+            handleShow()
+            console.log('erro no handle click')
+    },[])
 
 
     return (
@@ -46,7 +55,7 @@ const TransactionTable = (props) => {
                                 </td>
 
                                 <td>
-                                   <button type="button"  onClick={() => setOpen(true)} > <Edit size="20"/> <PutModal putrefference={object} open={open} /> </button>
+                                   <button type="button" onClick={(e) => handleClick(e,object)} > <Edit size="20"/> <PutModal putrefference={selectedElement} open={show} /> </button>
                                 </td>
 
                                 <td>

@@ -14,3 +14,7 @@ export const CardInfos = styled.p`
     color: white;
     margin: 0 0 0 15%;
 `
+
+export const RemoveButton = styled.button`
+  
+`

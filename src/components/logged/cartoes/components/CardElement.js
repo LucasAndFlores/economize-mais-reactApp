@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
+import { api } from '../../../../services/api';
 import {
     CardContainer,
     CardInfos,
 } from './CardElementStyles'
 
-const Cardelement = () => {
+const Cardelement = (props) => {
+
+  
+
+    console.log();
     return (
         <CardContainer>
-            <CardInfos>Nubank</CardInfos>
-            <CardInfos>**** **** **** 4589</CardInfos>
-            <CardInfos>Limite: R$ 1.000 </CardInfos>
-            <CardInfos>Data de pagamento: Todo dia 5 </CardInfos>
-            <CardInfos> Tipo: Crédito </CardInfos>
+            <CardInfos>{props.cartao.name}</CardInfos>
+            <CardInfos>**** **** **** {props.cartao.digitos}</CardInfos>
+            <CardInfos>Limite: R$ {props.cartao.limite} </CardInfos>
+            <CardInfos>Data de pagamento: Todo dia {props.cartao.dataDePagamento} </CardInfos>
+            <CardInfos> Tipo: {props.cartao.tipo} </CardInfos>
         </CardContainer>
     );
 }

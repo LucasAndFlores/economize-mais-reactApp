@@ -1,6 +1,7 @@
 import React from 'react';
 import { BackgroundContainerStyle } from '../../../shared/styles/styleBackground';
 import MenuLateral from '../../../shared/components/logged/menuLateral';
+import {AirplaneTicket} from '@styled-icons/material-outlined/AirplaneTicket';
 import {    
     RightContainer,
     RightContainerOne,
@@ -15,8 +16,8 @@ import {
     GoalTitle,
     GoalCardOne,
     IdOne,
-    Paragraph,
-    CardGoalContainer
+    Paragraph,    
+    DivCard,    
 } from './ObjetivosPageStyle'
 
 const ObjetivosPage = () => {
@@ -56,54 +57,67 @@ const ObjetivosPage = () => {
                         <GoalTitle>
                             Objetivos
                         </GoalTitle>
-                        <GoalContainer>
-                            <CardGoalContainer>
+
+                        <GoalContainer>                            
                                 <GoalCardOne>
-                                    <IdOne>
-                                        R$ 300
-                                    </IdOne>
-                                    <Paragraph>
-                                        12/07/2024
-                                    </Paragraph>
-                                    <IdOne>
-                                        Férias
-                                    </IdOne>
-                                    <Paragraph>
-                                        Viagem Paraguay
-                                    </Paragraph>
+                                    <DivCard>
+                                        <IdOne>
+                                            R$ 300
+                                        </IdOne>
+                                        <Paragraph>
+                                            12/07/2024
+                                        </Paragraph>
+                                    </DivCard>
+                                    <DivCard>
+                                        <AirplaneTicket size="40" />
+                                        <IdOne>
+                                            Férias
+                                        </IdOne>
+                                        <Paragraph>
+                                            Viagem para Paraguay
+                                        </Paragraph>
+                                    </DivCard>
                                 </GoalCardOne>
 
                                 <GoalCardOne>
-                                    <IdOne>
-                                        R$ 300
-                                    </IdOne>
-                                    <Paragraph>
-                                        12/07/2024
-                                    </Paragraph>
-                                    <IdOne>
-                                        Férias
-                                    </IdOne>
-                                    <Paragraph>
-                                        Viagem Paraguay
-                                    </Paragraph>
+                                    <DivCard>
+                                        <IdOne>
+                                            R$ 300
+                                        </IdOne>
+                                        <Paragraph>
+                                            12/07/2024
+                                        </Paragraph>
+                                    </DivCard>
+                                    <DivCard>
+                                        <AirplaneTicket size="40" />
+                                        <IdOne>
+                                            Férias
+                                        </IdOne>
+                                        <Paragraph>
+                                            Viagem para Paraguay
+                                        </Paragraph>
+                                    </DivCard>
                                 </GoalCardOne>
 
                                 <GoalCardOne>
-                                    <IdOne>
-                                        R$ 300
-                                    </IdOne>
-                                    <Paragraph>
-                                        12/07/2024
-                                    </Paragraph>
-                                    <IdOne>
-                                        Férias
-                                    </IdOne>
-                                    <Paragraph>
-                                        Viagem Paraguay
-                                    </Paragraph>
-                                </GoalCardOne>                            
-                            
-                            </CardGoalContainer>
+                                    <DivCard>
+                                        <IdOne>
+                                            R$ 300
+                                        </IdOne>
+                                        <Paragraph>
+                                            12/07/2024
+                                        </Paragraph>
+                                    </DivCard>
+                                    <DivCard>
+                                        <AirplaneTicket size="40" />
+                                        <IdOne>
+                                            Férias
+                                        </IdOne>
+                                        <Paragraph>
+                                            Viagem para Paraguay
+                                        </Paragraph>
+                                    </DivCard>
+                                </GoalCardOne>  
                         </GoalContainer>
                     </FormContainer>
                 </RightContainerOne>

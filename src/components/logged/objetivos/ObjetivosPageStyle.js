@@ -46,7 +46,7 @@ export const LabelForm = styled.label`
     margin: 10px 0;    
     display: flex;
     width: 100%;    
-    margin-left: 20%;
+    margin-left: 22%;
 `
 
 export const InputForm = styled.input`
@@ -81,6 +81,11 @@ export const GoalContainer = styled.div`
     height: 190px;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
 `
 
 export const GoalCardOne = styled.div`
@@ -92,16 +97,9 @@ export const GoalCardOne = styled.div`
     flex-direction: column;
     padding: 5px;
     box-shadow: 0px 16px 24px rgb(0 0 0 / 6%), 0px 2px 6px rgb(0 0 0 / 4%), 0px 0px 1px rgb(0 0 0 / 4%);
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     text-align: center;
-`
-
-export const CardGoalContainer = styled.div`
-    width: 100%;
-    height: 190px;
-    display: flex;
-    align-items: center;
 `
 
 export const RightContainerOne = styled.div`
@@ -114,11 +112,33 @@ export const RightContainerOne = styled.div`
 
 export const IdOne = styled.h3`
     font-weight: bold;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
 `
 
 export const Paragraph = styled.p`
-    
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
 `
+
+export const DivCard = styled.div`
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+`
+
+
+
+
+
 
 
 

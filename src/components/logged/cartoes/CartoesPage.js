@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback,useEffect, useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import schema from "./schemaCartoes";
@@ -31,31 +31,25 @@ const Cartoespage = () => {
 
     const [cartoes, setCartoes] = useState([])
 
-
+    const getCartoes = useCallback(async () => {
+        let response = await api.get(`cartoes/${fkUsuarioId}`)
+        
+        setCartoes(response.data)
+    })
 
 
     useEffect( () => {
-
-        console.log(fkUsuarioId);
-        api.get(`cartoes/${fkUsuarioId}`).then(
-
-            (results) => {
-                setCartoes(results.data.todosCartoes)
-                console.log(results.data.todosCartoes);
-            }
-        )
-
-    }, [setCartoes]);
+        getCartoes();
+    }, []);
 
 
     async function onSubmit(values, action) {
         
         values.fkUsuarioId = fkUsuarioId;
 
-        const results = api.post("/cartoes", values).then(results => {
-            console.log(results);
-        });
-        setCartoes();
+        await api.post("cartoes", values)
+        await getCartoes()
+        
         action.resetForm();
 
     }
@@ -119,10 +113,13 @@ const Cartoespage = () => {
                 </LeftContainer>
                 <RightContainer>
                     {cartoes.map(object => (
-                        <Cardelement cartao={object} />
+                        <Cardelement cartao={object} getCartoes={getCartoes}/>
 
+                                
                     )
+                    
                     )
+                   
                     }
 
                 </RightContainer>

@@ -1,6 +1,20 @@
 import styled from "styled-components";
 
-/* export const GoalCardOne = styled.div`
+export const FormContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 90%;
+`
+
+
+
+export const GoalCardOne = styled.div`
     width: 35%;
     height: 169px;
     background-color: white;
@@ -12,7 +26,7 @@ import styled from "styled-components";
     justify-content: space-around;
     align-items: center;
     text-align: center;
-` */
+`
 
 export const DivCard = styled.div`
     box-sizing: border-box;
@@ -42,3 +56,4 @@ export const Paragraph = styled.p`
 export const RemoveButton = styled.button`
   
 `
+

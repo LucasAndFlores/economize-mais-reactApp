@@ -3,7 +3,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import schema from "./schemaObjetivos";
 import { BackgroundContainerStyle } from '../../../shared/styles/styleBackground';
 import MenuLateral from '../../../shared/components/logged/menuLateral';
-import {AirplaneTicket} from '@styled-icons/material-outlined/AirplaneTicket';
 import UserBar from '../../../shared/components/logged/UserBar/UserBar';
 import { api } from '../../../services/api';
 import {    
@@ -17,12 +16,12 @@ import {
     InputForm,
     RegisterButton,
     GoalContainer,
-    GoalTitle,
-    GoalCardOne,
+    GoalTitle,    
     IdOne,
     Paragraph,    
     DivCard,    
 } from './ObjetivosPageStyle'
+import ObjetivoElement from "./components/ObjetivoElement";
 import "./ObjetivosFormFormik.css";
 
 const ObjetivosPage = () => {
@@ -35,7 +34,7 @@ const ObjetivosPage = () => {
         let response = await api.get(`objetivos/${fkUsuarioId}`)
         
         setObjetivos(response.data)
-    })
+    },[])
 
     useEffect( () => {
         getObjetivos();
@@ -45,13 +44,14 @@ const ObjetivosPage = () => {
         
         values.fkUsuarioId = fkUsuarioId;
 
-        await api.post("objetivos", values)
-        await getObjetivos()
+        let registroObjetivo = await api.post("objetivos", values)
+        let pegarNovosObjetivos = await getObjetivos()
         
         action.resetForm();
-
+        console.log(values)
     }
 
+    
     return (
         <BackgroundContainerStyle>
            <MainContainer>
@@ -64,7 +64,8 @@ const ObjetivosPage = () => {
                     initialValues={{
                         objetivo: "",
                         alvo: "",
-                        dataAlvo: "",                        
+                        dataAlvo: "",    
+                        fkUsuarioId,                     
                     }}
                     render={({ values, errors, touched, isValid }) => (
                         <FormContainer /* className="FormAlign" */>
@@ -94,7 +95,7 @@ const ObjetivosPage = () => {
                     </GoalTitle>
                     <GoalContainer>
                     {objetivos.map(object => (
-                        <GoalCardOne objetivos={object} getObjetivos={getObjetivos}/>
+                        <ObjetivoElement objetivos={object} getObjetivos={getObjetivos}/>
 
                                 
                     )

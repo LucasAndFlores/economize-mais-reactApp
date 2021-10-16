@@ -78,14 +78,6 @@ export const RegisterButton = styled.button`
     justify-content: center;
     cursor: pointer;
 `
-
-export const GoalTitle = styled.div`
-    font-size: 1.3;
-    font-weight: bold;
-    margin-left: 3px;
-    display: flex;
-`
-
 export const GoalContainer = styled.div`
     width: 100%;
     height: 190px;
@@ -98,19 +90,17 @@ export const GoalContainer = styled.div`
     text-decoration: none;
 `
 
-export const GoalCardOne = styled.div`
-    width: 35%;
-    height: 169px;
-    background-color: white;
-    border-radius: 30px;
+export const GoalTitle = styled.div`
+    font-size: 1.3;
+    font-weight: bold;
+    margin-left: 3px;
     display: flex;
-    flex-direction: column;
-    padding: 5px;
-    box-shadow: 0px 16px 24px rgb(0 0 0 / 6%), 0px 2px 6px rgb(0 0 0 / 4%), 0px 0px 1px rgb(0 0 0 / 4%);
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
 `
+
+
+
+
+
 
 
 

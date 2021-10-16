@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { api } from '../../../../services/api';
+import {AirplaneTicket} from '@styled-icons/material-outlined/AirplaneTicket';
 import {
     GoalCardOne,
     DivCard,
     IdOne,
-    Paragraph
+    Paragraph,
+    RemoveButton,
+
 } from './ObjetivoElementStyles'
 
-const Objetivoelement = (props) => {
+const ObjetivoElement = (props) => {
 
     async function deleteOjetivo() {
         await api.delete(`objetivos/${props.objetivo.id}`);
         props.getObjetivos();
-        
+        console.log(props);
     }
 
     console.log();
-    return (
+    return (        
         <GoalCardOne>
             {/* <RemoveButton onClick={deleteOjetivo} >apagar</RemoveButton>  */}
             <DivCard>
@@ -28,8 +31,8 @@ const Objetivoelement = (props) => {
                 {/* <IdOne>Férias</IdOne> */}
                 <Paragraph>{props.objetivo.objetivo}</Paragraph>
             </DivCard>
-        </GoalCardOne>
+        </GoalCardOne>        
     );
 }
 
-export default Objetivoelement;
+export default ObjetivoElement;

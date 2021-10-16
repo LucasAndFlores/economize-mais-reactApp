@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useCallback} from 'react';
+import React,{useState, useCallback} from 'react';
 import {Edit} from '@styled-icons/fa-solid/Edit'
 import {Trash} from '@styled-icons/fa-solid/Trash'
 import PutModal from './PutModal';

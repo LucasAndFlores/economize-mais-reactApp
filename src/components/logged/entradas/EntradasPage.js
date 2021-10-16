@@ -39,10 +39,9 @@ const EntradasPage = () => {
 
 
    async function onSubmit (values, action) {
-       console.log(values)
        let registerEntradas = await api.post("entradas", values)
-       console.log(registerEntradas)
        let getEntradas = await getNewEntradas()
+       action.resetForm()
    } 
 
     return (
@@ -75,7 +74,7 @@ const EntradasPage = () => {
                                                             <Field type="date" name="data" />
                                                             <ErrorMessage name="data"/>
 
-                                                            <Button>Cadastrar</Button>
+                                                            <Button type="submit">Cadastrar</Button>
                                                             
                                                             </Form>
 

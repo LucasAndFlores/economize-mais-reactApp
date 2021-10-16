@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {Money} from '@styled-icons/boxicons-regular/Money'
+import PutModalEntrada from './putModalEntrada';
+import DeleteModalEntrada from './deleteModalEntrada';
 
 import {
     Container,
@@ -17,12 +19,26 @@ import {
 
 
 const EntradasCardObject = (props) => {
-
     const entradas = props.entradas.entradas
     const getEntradas = props.getentradas
 
-    console.log(entradas)
-    console.log(getEntradas)
+    const [showEntradas, setShowEntradas] = useState(false)
+    const [selectedEntrada, setSelectedEntrada] = useState()
+    const [operationEntrada, setOperationEntrada] = useState(false)
+
+    function autoCloseEntrada () {
+        setShowEntradas(false)
+    } 
+
+    const handleShowEntrada = useCallback(() => {
+        setShowEntradas(!showEntradas)
+    },[showEntradas])
+
+    const handleClickEntrada = useCallback((e, entrada) => {
+        e.preventDefault()
+        setSelectedEntrada(entrada)
+        handleShowEntrada()
+    }, [handleShowEntrada])
 
     return (
       
@@ -47,8 +63,14 @@ const EntradasCardObject = (props) => {
                                         <EntradaData> {entrada.data} </EntradaData> 
                                     </EntradaAlign>
                                     <ContainerButtons>
-                                        <Button> Editar </Button>
-                                        <Button> Deletar </Button>
+                                        <Button onClick={(e) => {handleClickEntrada(e, entrada); setOperationEntrada(false)}}> Editar </Button>
+                                        {showEntradas && !operationEntrada && 
+                                        <PutModalEntrada  putentradas={selectedEntrada} autoclose={autoCloseEntrada} refreshentrada={getEntradas}    />}
+
+
+                                        <Button onClick={(e) => {handleClickEntrada(e, entrada); setOperationEntrada(true)}}> Deletar </Button>
+                                        {showEntradas && operationEntrada  && 
+                                        <DeleteModalEntrada deleteentradas={selectedEntrada} autoclose={autoCloseEntrada} refreshentrada={getEntradas}      />}
                                     </ContainerButtons>
                                     
                         </EntradasInfo>

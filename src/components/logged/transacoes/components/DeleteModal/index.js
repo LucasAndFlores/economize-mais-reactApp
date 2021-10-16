@@ -1,4 +1,4 @@
-import React,{useCallback} from 'react';
+import React from 'react';
 import { api } from '../../../../../services/api';
 import {CloseOutline} from '@styled-icons/evaicons-outline/CloseOutline'
 import reactDom from 'react-dom';
@@ -13,8 +13,6 @@ import {
 } from './styles'
 
 const DeleteModal = (props) => {
-
-    const selectModal = document.getElementById('portal')
 
     const deleteTransactionInfo = {
         loja: props.deleterefference.loja,

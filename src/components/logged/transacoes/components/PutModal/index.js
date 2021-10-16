@@ -1,4 +1,4 @@
-import React,{useCallback} from 'react';
+import React from 'react';
 import { api } from '../../../../../services/api';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import schemaTransaction from '../../schemaTransaction'
@@ -36,9 +36,7 @@ const PutModal = (props) => {
     }
 
     async function onSubmit (values, action) {
-        console.log(values)
         let updateTransaction = await api.put(`transacoes/${transactioID}`, values)
-        console.log(updateTransaction)
         refreshTransaction()
         autoClose()
     }

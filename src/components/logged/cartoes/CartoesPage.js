@@ -1,4 +1,4 @@
-import React, { useCallback,useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import schema from "./schemaCartoes";
@@ -28,29 +28,70 @@ const Cartoespage = () => {
 
     const fkUsuarioId = localStorage.getItem("user_id")
 
-
-    const [cartoes, setCartoes] = useState([])
+    const [cartoes, setCartoes] = useState([]);
+    const [name, setNome] = useState();
+    const [digitos, setDigitos] = useState();
+    const [limite, setLimite] = useState();
+    const [dataDePagamento, setDataPagamento] = useState();
+    const [tipoLista, setTipoLista] = useState([{ label: "debito", value: "debito" }, { label: "credito", value: "credito" }]);
+    const [tipo, setTipo] = useState({ label: "credito", value: "credito" });
+    const [id, setId] = useState();
+    const [tipoTransacao, setTipoTransacao] = useState('Cadastrar');
 
     const getCartoes = useCallback(async () => {
+
+
         let response = await api.get(`cartoes/${fkUsuarioId}`)
-        
+
         setCartoes(response.data)
     })
 
+    const setCartao = useCallback(async (cartao) => {
+        setNome(cartao.name);
+        setDigitos(cartao.digitos);
+        setLimite(cartao.limite);
+        setDataPagamento(cartao.dataDePagamento);
+        setId(cartao.id);
+        setTipo({ label: cartao.tipo, value: cartao.tipo });
+        setTipoTransacao('Alterar');
+    })
 
-    useEffect( () => {
+    const clearForm = useCallback(async () => {
+        setNome('');
+        setDigitos('');
+        setLimite('');
+        setDataPagamento('');
+    })
+
+
+    useEffect(() => {
         getCartoes();
     }, []);
 
-
     async function onSubmit(values, action) {
-        
+
         values.fkUsuarioId = fkUsuarioId;
 
-        await api.post("cartoes", values)
+        values.name = name
+        values.digitos = digitos
+        values.limite = limite
+        values.dataDePagamento = dataDePagamento
+        values.tipo = tipo[0].value
+        console.log(values);
+        if (tipoTransacao === 'Cadastrar') {
+            await api.post("cartoes", values)
+        }
+        if (tipoTransacao === 'Alterar') {
+
+            await api.put(`cartoes/${id}`, values)
+            setTipoTransacao('Cadastrar');
+        }
+
+
         await getCartoes()
-        
-        action.resetForm();
+
+        await clearForm();
+
 
     }
     return (
@@ -73,13 +114,16 @@ const Cartoespage = () => {
                             <Form className="FormAlign">
                                 <RegisterWelcome>Cadastre seus cartões</RegisterWelcome>
                                 <CardLabel for="CardName">Nome da operadora</CardLabel>
-                                <Field id="CardName" name="name" type="text" required />
+                                <Field id="CardName" name="name" type="text" value={name} onChange={(e) => setNome(e.target.value)} required />
                                 <ErrorMessage name="name" />
                                 <CardLabel for="CardDigits">4 últimos dígitos</CardLabel>
                                 <Field className="Input"
                                     id="CardDigits"
                                     name="digitos"
                                     type="number"
+                                    value={digitos}
+                                    onChange={(e) => setDigitos(e.target.value)}
+
                                     required
                                 />
                                 <ErrorMessage name="digitos" />
@@ -88,6 +132,8 @@ const Cartoespage = () => {
                                     id="CardLimitBudget"
                                     name="limite"
                                     type="number"
+                                    value={limite}
+                                    onChange={(e) => setLimite(e.target.value)}
                                     required
                                 />
                                 <ErrorMessage name="limite" />
@@ -96,30 +142,47 @@ const Cartoespage = () => {
                                     id="CardPaymentDay"
                                     name="dataDePagamento"
                                     type="number"
+                                    value={dataDePagamento}
+                                    onChange={(e) => setDataPagamento(e.target.value)}
                                     required
                                 />
                                 <ErrorMessage name="dataDePagamento" />
                                 <CardLabel for="CardType"> Tipo </CardLabel>
-                                <Field className="Input" name="tipo" id="CardType" as="Select">
-                                    <option value="debito">Débito</option>
-                                    <option value="credito">Crédito</option>
+                                <Field className="Input" name="tipo" id="CardType" as="Select"
+
+                                >
+
+                                    {tipoLista.map((option) => {
+                                        if (option.value === tipo.value) {
+                                            return <option value={option.value} selected>{option.label}</option>
+                                        } else {
+                                            return <option value={option.value}>{option.label}</option>
+                                        }
+
+
+                                    }
+
+                                    )}
+
                                 </Field>
 
                                 <ErrorMessage name="tipo" />
-                                <CardRegister type="submit" disabled={!isValid} > Cadastrar </CardRegister>
+
+                                <CardRegister type="submit" disabled={!isValid} > {tipoTransacao} </CardRegister>
+
                             </Form>
                         )}
                     />
                 </LeftContainer>
                 <RightContainer>
                     {cartoes.map(object => (
-                        <Cardelement cartao={object} getCartoes={getCartoes}/>
+                        <Cardelement cartao={object} getCartoes={getCartoes} setCartao={setCartao} />
 
-                                
+
                     )
-                    
+
                     )
-                   
+
                     }
 
                 </RightContainer>

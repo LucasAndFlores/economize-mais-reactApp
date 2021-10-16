@@ -14,10 +14,16 @@ const Cardelement = (props) => {
         
     }
 
+    async function setCartaoDetalhes() {
+        props.setCartao(props.cartao);
+        
+    }
+
     console.log();
     return (
         <CardContainer>
             <RemoveButton onClick={deleteCard} >apagar</RemoveButton>    
+            <RemoveButton onClick={setCartaoDetalhes} >editar</RemoveButton>
             <CardInfos>{props.cartao.name}</CardInfos>
             <CardInfos>**** **** **** {props.cartao.digitos}</CardInfos>
             <CardInfos>Limite: R$ {props.cartao.limite} </CardInfos>

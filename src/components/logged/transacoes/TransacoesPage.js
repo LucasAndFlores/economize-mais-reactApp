@@ -103,8 +103,13 @@ const TransacoesPage = () => {
                                             <EstiloInput>
                                             <LabelFormTransacoes htmlFor="loja"> Categoria </LabelFormTransacoes>
                                             <Field name="fkCategoriaId" as="select" >
-                                                <option value={1}> aluguel </option>
-                                                <option value={1}> teste </option>
+                                                <option value={1}> jantar fora </option>
+                                                <option value={2}> aluguel </option>
+                                                <option value={3}> mercado </option>
+                                                <option value={4}> ifood </option>
+                                                <option value={5}> gasolina </option>
+                                                <option value={6}> despesa com pets </option>
+                                                <option value={7}> compras para casa </option>
                                             </Field>
                                             </EstiloInput>
                                             <ErrorMessage name="fkCategoriaId"/>

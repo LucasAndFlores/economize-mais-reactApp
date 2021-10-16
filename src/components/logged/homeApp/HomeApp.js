@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BackgroundContainerStyle } from '../../../shared/styles/styleBackground'
 import {
     MainContainerHome, 
@@ -11,7 +11,9 @@ import {
 } from './HomeAppStyles'
 import MenuLateral from '../../../shared/components/logged/menuLateral';
 import UserBar from '../../../shared/components/logged/UserBar/UserBar';
-import { AuthContext } from '../../../contexts/auth';
+import TransactionTableHome from './components/transactionsTableHome';
+import SpendByType from './components/CardTypeTransaction';
+import SpentByCategoria from './components/SpentByCategoria';
 
 const Homeapp = () => {
 
@@ -24,10 +26,10 @@ const Homeapp = () => {
             <MainContainerHome>
                 <LeftHome> 
                     <TableSpent>
-                        Tabela de gastos
+                            <TransactionTableHome />
                     </TableSpent>
                     <CategorySpent>
-                        Gráfico de gasto por categoria
+                        <SpentByCategoria />
                     </CategorySpent>
                 </LeftHome>
                 <RightHome>
@@ -35,7 +37,7 @@ const Homeapp = () => {
                         Cards de objetivos
                     </ObjectivesCard>
                     <SpentbyCard>
-                        Gasto por cartão
+                         <SpendByType />
                     </SpentbyCard>
                 </RightHome>
                 

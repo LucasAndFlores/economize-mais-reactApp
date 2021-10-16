@@ -5,6 +5,7 @@ import schema from "./schemaCartoes";
 import { useHistory } from "react-router-dom";
 import { api } from '../../../services/api';
 
+
 import { BackgroundContainerStyle } from "../../../shared/styles/styleBackground";
 import {
     MainContainer,
@@ -22,8 +23,6 @@ import MenuLateral from "../../../shared/components/logged/menuLateral";
 import UserBar from "../../../shared/components/logged/UserBar/UserBar";
 import "./FormFormik.css";
 
-
-
 const Cartoespage = () => {
 
     const fkUsuarioId = localStorage.getItem("user_id")
@@ -33,8 +32,8 @@ const Cartoespage = () => {
     const [digitos, setDigitos] = useState();
     const [limite, setLimite] = useState();
     const [dataDePagamento, setDataPagamento] = useState();
-    const [tipoLista, setTipoLista] = useState([{ label: "debito", value: "debito" }, { label: "credito", value: "credito" }]);
-    const [tipo, setTipo] = useState({ label: "credito", value: "credito" });
+    const [tipoLista, setTipoLista] = useState([{ label: "Debito", value: "debito" }, { label: "Crédito", value: "credito" }]);
+    const [tipo, setTipo] = useState({ label: "Crédito", value: "credito" });
     const [id, setId] = useState();
     const [tipoTransacao, setTipoTransacao] = useState('Cadastrar');
 
@@ -48,11 +47,12 @@ const Cartoespage = () => {
 
     const setCartao = useCallback(async (cartao) => {
         setNome(cartao.name);
+        
         setDigitos(cartao.digitos);
         setLimite(cartao.limite);
         setDataPagamento(cartao.dataDePagamento);
         setId(cartao.id);
-        setTipo({ label: cartao.tipo, value: cartao.tipo });
+        setTipoSelected(cartao.tipo);
         setTipoTransacao('Alterar');
     })
 
@@ -63,6 +63,12 @@ const Cartoespage = () => {
         setDataPagamento('');
     })
 
+    const setTipoSelected = useCallback(async (value) => {
+        let label = '';
+        value =="credito" ? label = "Crédito" : label = 'Debito'
+        setTipo({ label: value, value: value })
+    })
+
 
     useEffect(() => {
         getCartoes();
@@ -71,13 +77,13 @@ const Cartoespage = () => {
     async function onSubmit(values, action) {
 
         values.fkUsuarioId = fkUsuarioId;
-
+       
         values.name = name
         values.digitos = digitos
         values.limite = limite
         values.dataDePagamento = dataDePagamento
-        values.tipo = tipo[0].value
-        console.log(values);
+        values.tipo = tipo.value
+      
         if (tipoTransacao === 'Cadastrar') {
             await api.post("cartoes", values)
         }
@@ -114,7 +120,9 @@ const Cartoespage = () => {
                             <Form className="FormAlign">
                                 <RegisterWelcome>Cadastre seus cartões</RegisterWelcome>
                                 <CardLabel for="CardName">Nome da operadora</CardLabel>
-                                <Field id="CardName" name="name" type="text" value={name} onChange={(e) => setNome(e.target.value)} required />
+                                <Field id="CardName" name="name" type="text" value={name}  
+                                onChange={(e) => setNome(e.target.value)}
+                                required />
                                 <ErrorMessage name="name" />
                                 <CardLabel for="CardDigits">4 últimos dígitos</CardLabel>
                                 <Field className="Input"
@@ -149,7 +157,7 @@ const Cartoespage = () => {
                                 <ErrorMessage name="dataDePagamento" />
                                 <CardLabel for="CardType"> Tipo </CardLabel>
                                 <Field className="Input" name="tipo" id="CardType" as="Select"
-
+                                    onChange={(e) => setTipoSelected(e.target.value)}
                                 >
 
                                     {tipoLista.map((option) => {
@@ -158,7 +166,6 @@ const Cartoespage = () => {
                                         } else {
                                             return <option value={option.value}>{option.label}</option>
                                         }
-
 
                                     }
 
@@ -175,11 +182,11 @@ const Cartoespage = () => {
                     />
                 </LeftContainer>
                 <RightContainer>
-                    {cartoes.map(object => (
-                        <Cardelement cartao={object} getCartoes={getCartoes} setCartao={setCartao} />
-
-
-                    )
+                    {cartoes.map(object => {
+                        return( [<Cardelement cartao={object} getCartoes={getCartoes} setCartao={setCartao} />,
+                        <br></br>
+                        ])
+                    }
 
                     )
 

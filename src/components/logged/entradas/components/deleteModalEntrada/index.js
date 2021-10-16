@@ -35,7 +35,7 @@ const DeleteModalEntrada = (props) => {
 
                             <LineButtons>
                                 <YesButton type="button" onClick={() => deleteTransaction()}> Sim </YesButton>
-                                <YesButton type="button" onClick={() => autoClose()} > Não </YesButton>
+                                <NoButton type="button" onClick={() => autoClose()} > Não </NoButton>
                             </LineButtons>
                     </ModalStyle>
                 <CloseModal type="button" onClick={() => autoClose()}>

@@ -25,7 +25,6 @@ const PutModalEntrada = (props) => {
 
     async function onSubmit (values, action) {
         let updateEntrada = await api.put(`entradas/${entradaId}`, values)
-        console.log(updateEntrada)
         refreshEntrada()
         autoClose()
     }

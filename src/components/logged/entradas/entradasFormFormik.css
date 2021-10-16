@@ -1,0 +1,14 @@
+.entradasForm {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    width: 60%;
+    height: 55vh;
+    justify-content: space-evenly;
+}
+
+.entradasForm input {
+    height: 5vh;
+}

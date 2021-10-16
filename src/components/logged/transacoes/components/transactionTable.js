@@ -1,7 +1,8 @@
-import React,{useState, useEffect, useCallback} from 'react';
-import { api } from '../../../../services/api';
+import React,{useState, useCallback} from 'react';
 import {Edit} from '@styled-icons/fa-solid/Edit'
+import {Trash} from '@styled-icons/fa-solid/Trash'
 import PutModal from './PutModal';
+import DeleteModal from './DeleteModal'
 
 import {
     TabelaGastos,
@@ -10,11 +11,24 @@ import {
 
 
 const TransactionTable = (props) => {
-    const [open, setOpen] = useState(false)
-    const [close, setClose] = useState(true)
+    const [selectedElement, setSelectedElement ] = useState()
+    const [show, setShow] = useState(false)
+    const [operation, setOperation] = useState(false)
 
+    function autoClose () {
+        setShow(false)
+    }
 
+    const handleShow = useCallback(() => {
+        setShow(!show)
+    }, [show])
 
+    const handleClick = useCallback((e, object) => { 
+            e.preventDefault()
+            setSelectedElement(object)
+            handleShow()
+    },[handleShow])
+    
 
     return (
             <MainContainer>
@@ -46,11 +60,13 @@ const TransactionTable = (props) => {
                                 </td>
 
                                 <td>
-                                   <button type="button"  onClick={() => setOpen(true)} > <Edit size="20"/> <PutModal putrefference={object} open={open} /> </button>
+                                   <button type="button" onClick={(e) => {handleClick(e,object); setOperation(false)}} > <Edit size="20"/>  </button>
+                                   {show && !operation && <PutModal putrefference={selectedElement} setshow={autoClose} refreshtransaction={props.gettransactions}   />}
                                 </td>
 
                                 <td>
-                                    teste 2
+                                    <button type="button" onClick={(e) => {handleClick(e,object); setOperation(true)}} > <Trash size="20"/>  </button>
+                                    {show && operation && <DeleteModal deleterefference={selectedElement}  setshow={autoClose} refreshtransaction={props.gettransactions}   />}
                                 </td>
                             </tr>
                         )                          

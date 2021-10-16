@@ -25,6 +25,7 @@ export const RightHome = styled.div `
 ` 
 export const TableSpent = styled.div`
     height: 50vh;
+    margin-bottom: 20px;
 `
 export const CategorySpent = styled.div`
     height: 40vh;

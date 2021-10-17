@@ -33,7 +33,6 @@ const Configpage = () => {
 
         stateHandler("nome", response.data.usuario.nome);
         stateHandler("sobrenome", response.data.usuario.sobrenome);
-        stateHandler("email", response.data.usuario.email);
         stateHandler("telefone", response.data.usuario.telefone);
         
     });
@@ -45,7 +44,6 @@ const Configpage = () => {
         let values = {
             nome: state.nome,
             sobrenome: state.sobrenome,
-            email: state.email,
             telefone: state.telefone
         }
         console.log(values);
@@ -84,16 +82,6 @@ const Configpage = () => {
                         <RegisterButton> Alterar </RegisterButton>
                     </AlignInputLabel>
                     <AlignInputLabel>
-                        <LabelForm for="userEmail">
-                            Alterar Email
-                        </LabelForm>
-                        <InputForm name="email" id="userEmail" type="text"
-                            value={state.email}
-                            onChange={(e) => stateHandler(e.target.name, e.target.value)}
-                            required />
-                        <RegisterButton> Alterar </RegisterButton>
-                    </AlignInputLabel>
-                    <AlignInputLabel>
                         <LabelForm for="userTelefone">
                             Alterar Telefone
                         </LabelForm>
@@ -101,24 +89,6 @@ const Configpage = () => {
                             value={state.telefone}
                             onChange={(e) => stateHandler(e.target.name, e.target.value)}
                             required />
-                        <RegisterButton> Alterar </RegisterButton>
-                    </AlignInputLabel>
-                    <AlignInputLabel>
-                        <LabelForm for="userDataNasc">
-                            Alterar Data de Nascimento
-                        </LabelForm>
-                        <InputForm name="datanasc" id="userDataNasc" type="text"
-                            value={state.datanasc}
-                            onChange={(e) => stateHandler(e.target.name, e.target.value)}
-                            required />
-                        <RegisterButton> Alterar </RegisterButton>
-                    </AlignInputLabel>
-                    
-                    <AlignInputLabel>
-                        <LabelForm for="userPassword">
-                            Alterar sua senha
-                        </LabelForm>
-                        <InputForm name="senha" id="userPassword" type="text" required />
                         <RegisterButton> Alterar </RegisterButton>
                     </AlignInputLabel>
                 </LeftContainer>

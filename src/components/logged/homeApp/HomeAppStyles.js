@@ -28,13 +28,16 @@ export const TableSpent = styled.div`
     margin-bottom: 20px;
 `
 export const CategorySpent = styled.div`
+    margin-top: 20px;
     height: 40vh;
 `
 
 export const ObjectivesCard = styled.div`
     height: 50vh;
+    margin-left: 15px;
 `
 
 export const SpentbyCard = styled.div`
+    margin-top: 30px;
     height: 40vh;
 `

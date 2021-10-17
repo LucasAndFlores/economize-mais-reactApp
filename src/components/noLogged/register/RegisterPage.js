@@ -24,7 +24,7 @@ const Registerpage = () => {
     const { setAuthenticated } = useContext(AuthContext)
 
    async function onSubmit (values, action) {
-            let userPost = await axios.post(process.env.REACT_APP_API_URL_USERS_POST, values)
+            let userPost = await axios.post("http://localhost:3030/v1/usuarios/", values)
             localStorage.setItem('token', userPost.data.token)
             localStorage.setItem('user_id', userPost.data.message.id)
             localStorage.setItem('user_name', userPost.data.message.nome)

@@ -15,10 +15,11 @@ function AuthProvider ({ children }) {
     
     const AuthCallback = useCallback(() => {
             const HasToken = localStorage.getItem("token")
-            if(HasToken && authenticated) {
+            if(HasToken) {
             api.defaults.headers.Authorization = `Bearer ${HasToken}`  
             }
-            setLoading(false)     
+
+            setTimeout(() => setLoading(false), 1000 )  
     },[])
 
 

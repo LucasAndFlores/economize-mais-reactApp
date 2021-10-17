@@ -27,7 +27,7 @@ import { AuthContext } from '../../../contexts/auth';
 
 const LoginPage = () => {
 
-    const { setAuthenticated } = useContext(AuthContext)
+    const { setAuthenticated, authenticated } = useContext(AuthContext)
     const history = useHistory();
 
 
@@ -36,11 +36,10 @@ const LoginPage = () => {
         console.log(madeLogin)
         localStorage.setItem("token", madeLogin.data.token) 
         localStorage.setItem("user_id", madeLogin.data.id) 
-        localStorage.setItem("user_name", madeLogin.data.nome)    
+        localStorage.setItem("user_name", madeLogin.data.nome)
+        setAuthenticated(true)    
         action.resetForm()
-        setAuthenticated(true)
-        history.push('/home')
-
+        history.push("/home")
     }
     
     return (

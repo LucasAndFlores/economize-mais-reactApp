@@ -33,7 +33,6 @@ export const LabelForm = styled.label `
     font-size: 1.3;
     font-weight: bold;
     margin: 10px 0;
-    color: white;
 
 `
 

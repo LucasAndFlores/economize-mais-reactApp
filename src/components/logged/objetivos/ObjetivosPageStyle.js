@@ -13,7 +13,8 @@ export const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-left:10%;
+    margin-left: 5%;
+    margin-top: 10%;
     `
     
     export const FormContainer = styled.div`
@@ -32,7 +33,8 @@ export const MainContainer = styled.div`
         height: 100vh;
         display: flex;
         flex-direction: column;
-        margin-top: 5.5%;    
+        margin-top: 11%;  
+
     `
     
     export const TitleText = styled.div`
@@ -50,11 +52,8 @@ export const MainContainer = styled.div`
     
     export const LabelForm = styled.label`
     font-size: 1.3;
-    font-weight: bold;
-    margin: 10px 0;    
-    display: flex;
-    width: 100%;    
-    margin-left: 22%;
+    font-weight: bold; 
+    display: flex; 
     `
 
 export const InputForm = styled.input`

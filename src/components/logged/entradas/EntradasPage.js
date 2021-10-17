@@ -21,6 +21,7 @@ const EntradasPage = () => {
 
     const fkUsuarioId = localStorage.getItem("user_id")
 
+
     const entradasInitialValues = {
         nome: '',
         valor: '',

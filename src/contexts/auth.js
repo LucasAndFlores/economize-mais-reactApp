@@ -1,4 +1,6 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
+import { useHistory, Redirect } from "react-router";
+import history from '../history'
 
 import  { api }  from '../services/api'
 
@@ -9,14 +11,19 @@ function AuthProvider ({ children }) {
     const [ authenticated, setAuthenticated ] = useState(false)
     const [loading, setLoading] = useState(true)
 
+    const history = useHistory()
+    
+    const AuthCallback = useCallback(() => {
+            const HasToken = localStorage.getItem("token")
+            if(HasToken && authenticated) {
+            api.defaults.headers.Authorization = `Bearer ${HasToken}`  
+            }
+            setLoading(false)     
+    },[])
+
 
     useEffect(() => {
-        const HasToken = localStorage.getItem("token")
-        if(HasToken) {
-        api.defaults.headers.Authorization = `Bearer ${HasToken}`  
-        setAuthenticated(true)
-        }
-        setLoading(false)
+       AuthCallback()
     }, [])
 
 

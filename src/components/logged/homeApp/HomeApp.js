@@ -14,6 +14,7 @@ import UserBar from '../../../shared/components/logged/UserBar/UserBar';
 import TransactionTableHome from './components/transactionsTableHome';
 import SpendByType from './components/CardTypeTransaction';
 import SpentByCategoria from './components/SpentByCategoria';
+import ObjetivoElement from './components/ObjectivesCard';
 
 const Homeapp = () => {
 
@@ -34,7 +35,7 @@ const Homeapp = () => {
                 </LeftHome>
                 <RightHome>
                     <ObjectivesCard>
-                        Cards de objetivos
+                         <ObjetivoElement />
                     </ObjectivesCard>
                     <SpentbyCard>
                          <SpendByType />

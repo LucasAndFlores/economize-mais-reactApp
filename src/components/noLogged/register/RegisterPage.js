@@ -30,7 +30,7 @@ const Registerpage = () => {
             localStorage.setItem('user_name', userPost.data.message.nome)
             setAuthenticated(true)
             action.resetForm()
-            history.push('/home')
+            history.push("/home")
     }
 
 

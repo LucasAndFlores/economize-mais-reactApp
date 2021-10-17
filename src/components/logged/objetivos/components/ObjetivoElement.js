@@ -1,37 +1,62 @@
-import React, { useEffect, useState } from 'react'
-import { api } from '../../../../services/api';
-import {AirplaneTicket} from '@styled-icons/material-outlined/AirplaneTicket';
+import React, {useCallback, useEffect, useState } from 'react'
+import {TargetArrow} from '@styled-icons/fluentui-system-filled/TargetArrow';
+import DeleteModalObjetivos from './DeleteModalObjetivos/index'
 import {
     GoalCardOne,
-    DivCard,
     IdOne,
     Paragraph,
-    RemoveButton,
+    ContainerCards,
+    FormContainer,
+    GoalContainer,
+    GoalTitle,
+    RemoveButton
 
 } from './ObjetivoElementStyles'
 
 const ObjetivoElement = (props) => {
 
-    async function deleteOjetivo() {
-        await api.delete(`objetivos/${props.objetivo.id}`);
-        props.getObjetivos();
-        console.log(props);
+    const objetivos = props.objetivos
+    const refreshObjetivos = props.getObjetivos
+
+    const [selectedObjetivo, setSelectedObjetivo ] = useState()
+    const [show, setShow] = useState(false)
+
+    function autoClose () {
+        setShow(false)
     }
 
-    console.log();
-    return (        
-        <GoalCardOne>
-            {/* <RemoveButton onClick={deleteOjetivo} >apagar</RemoveButton>  */}
-            <DivCard>
-                <IdOne>{props.objetivo.alvo}</IdOne>
-                <Paragraph>{props.objetivo.dataAlvo}</Paragraph>
-            </DivCard>
-            <DivCard>
-                <AirplaneTicket size="40" />
-                {/* <IdOne>Férias</IdOne> */}
-                <Paragraph>{props.objetivo.objetivo}</Paragraph>
-            </DivCard>
-        </GoalCardOne>        
+    const handleShow = useCallback(() => {
+        setShow(!show)
+    }, [])
+
+    const handleClick = useCallback((e,objetivo) => { 
+            e.preventDefault()
+            setSelectedObjetivo(objetivo)
+            handleShow()
+    },[handleShow])
+
+    console.log(props);
+    console.log(refreshObjetivos)
+
+
+    return (   
+        <FormContainer>
+                    <GoalTitle>
+                        Objetivos
+                    </GoalTitle>
+                    <GoalContainer>
+                            {objetivos.map(objetivo => (
+                                <GoalCardOne key={objetivo.id}>
+                                        <IdOne> {objetivo.objetivo} </IdOne>
+                                        <TargetArrow size="30" />
+                                        <Paragraph> R$ {objetivo.alvo} </Paragraph>
+                                        <RemoveButton type="button" onClick={(e) => {handleClick(e,objetivo)}}>Excluir</RemoveButton>
+                                        { show && <DeleteModalObjetivos   refreshobjetivos={refreshObjetivos} deleteobjetivo={selectedObjetivo} autoclose={autoClose}  /> }
+                                </GoalCardOne>        
+
+                            ))}
+                </GoalContainer>
+      </FormContainer>
     );
 }
 

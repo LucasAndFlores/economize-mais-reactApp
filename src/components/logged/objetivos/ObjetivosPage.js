@@ -28,11 +28,17 @@ const ObjetivosPage = () => {
 
     const fkUsuarioId = localStorage.getItem("user_id")
 
+    const objectivesInitialValues = {
+        objetivo: "",
+        alvo: "",
+        dataAlvo: "",    
+        fkUsuarioId 
+    }
+
     const [objetivos, setObjetivos] = useState([])
 
     const getObjetivos = useCallback(async () => {
         let response = await api.get(`objetivos/${fkUsuarioId}`)
-        
         setObjetivos(response.data)
     },[])
 
@@ -41,12 +47,8 @@ const ObjetivosPage = () => {
     }, []);
 
     async function onSubmit(values, action) {
-        
-        values.fkUsuarioId = fkUsuarioId;
-
         let registroObjetivo = await api.post("objetivos", values)
         let pegarNovosObjetivos = await getObjetivos()
-        
         action.resetForm();
         console.log(values)
     }
@@ -61,50 +63,33 @@ const ObjetivosPage = () => {
                 <Formik
                     validationSchema={schema}
                     onSubmit={onSubmit}
-                    initialValues={{
-                        objetivo: "",
-                        alvo: "",
-                        dataAlvo: "",    
-                        fkUsuarioId,                     
-                    }}
-                    render={({ values, errors, touched, isValid }) => (
-                        <FormContainer /* className="FormAlign" */>
+                    initialValues={objectivesInitialValues}
+                    >
+                    {({ values, errors, touched, isValid }) => (
+                        <Form className="FormAlign">
                             <TitleText>Cadastro de Objetivos</TitleText>
-                            <LabelForm for="Objetivo">Objetivo</LabelForm>
-                            <Field id="Objetivo" name="objetivo" type="text" required />
+                            <LabelForm for="objetivo">Objetivo</LabelForm>
+                            <Field id="pbjetivo" name="objetivo" type="text"  />
                             <ErrorMessage name="objetivo" />
 
-                            <LabelForm for="Alvo">Alvo</LabelForm>
-                            <Field id="Alvo" name="alvo" type="text" required />
+                            <LabelForm for="alvo">Alvo</LabelForm>
+                            <Field id="alvo" name="alvo" type="number"  />
                             <ErrorMessage name="alvo" />
 
-                            <LabelForm for="DatAlvo">Data Alvo</LabelForm>
-                            <Field id="Data Alvo" name="dataAlvo" type="text" required />
+                            <LabelForm for="dataAlvo">Data Alvo</LabelForm>
+                            <Field id="dataAlvo" name="dataAlvo" type="date"  />
                             <ErrorMessage name="dataAlvo" />
                             
-                            <RegisterButton type="submit" disabled={!isValid} >Cadastrar</RegisterButton>
-                        </FormContainer>
+                            <RegisterButton type="submit" >Cadastrar</RegisterButton>
+                        </Form>
                     )}
-                />
+                </Formik>
             </RightContainer>
 
             <RightContainerOne>
-                <FormContainer>
-                    <GoalTitle>
-                        Objetivos
-                    </GoalTitle>
-                    <GoalContainer>
-                    {objetivos.map(object => (
-                        <ObjetivoElement objetivos={object} getObjetivos={getObjetivos}/>
 
-                                
-                    )
-                    
-                    )
-                   
-                    }
-                    </GoalContainer>
-                </FormContainer>
+                        <ObjetivoElement objetivos={objetivos} getObjetivos={getObjetivos}/>
+
             </RightContainerOne>
             
             

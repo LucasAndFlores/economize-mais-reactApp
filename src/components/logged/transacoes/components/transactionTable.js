@@ -11,6 +11,9 @@ import {
 
 
 const TransactionTable = (props) => {
+
+    const transaction = props.transactions.transactions
+
     const [selectedElement, setSelectedElement ] = useState()
     const [show, setShow] = useState(false)
     const [operation, setOperation] = useState(false)
@@ -21,7 +24,7 @@ const TransactionTable = (props) => {
 
     const handleShow = useCallback(() => {
         setShow(!show)
-    }, [show])
+    }, [])
 
     const handleClick = useCallback((e, object) => { 
             e.preventDefault()
@@ -43,7 +46,7 @@ const TransactionTable = (props) => {
                     </thead>
                     
                     <tbody>
-                        {props.transactions.transactions.map(object => (
+                        {transaction.map(object => (
 
                             <tr key={object.id}>
                                 <td>

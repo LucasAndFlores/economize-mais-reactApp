@@ -6,12 +6,13 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
 `
 export const EntradasCard = styled.div`
     background-color: white;
     border-radius: 15px;
     width: 80%;
-    height: 40vh;
+    height: 100px;
     display: flex;
     flex-direction: row;
     margin: 10px 0;

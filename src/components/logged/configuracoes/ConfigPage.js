@@ -35,11 +35,22 @@ const Configpage = () => {
         stateHandler("sobrenome", response.data.usuario.sobrenome);
         stateHandler("email", response.data.usuario.email);
         stateHandler("telefone", response.data.usuario.telefone);
+        
     });
 
     async function onSubmit(e) {
         console.log(e.target.id);
         console.log(state.nome);
+
+        let values = {
+            nome: state.nome,
+            sobrenome: state.sobrenome,
+            email: state.email,
+            telefone: state.telefone
+        }
+        console.log(values);
+        let response = await api.put(`usuarios/${fkUsuarioId}`, values);
+        getUserInfo();
     }
 
     useEffect(() => {
@@ -60,7 +71,7 @@ const Configpage = () => {
                             value={state.nome}
                             onChange={(e) => stateHandler(e.target.name, e.target.value)}
                             required />
-                        <RegisterButton  id="nome" onClick={(e) => onSubmit(e)}> Alterar </RegisterButton>
+                        <RegisterButton id="nome" onClick={(e) => onSubmit(e)}> Alterar </RegisterButton>
                     </AlignInputLabel>
                     <AlignInputLabel>
                         <LabelForm for="userSobrenome">
@@ -82,9 +93,9 @@ const Configpage = () => {
                             required />
                         <RegisterButton> Alterar </RegisterButton>
                     </AlignInputLabel>
-                     <AlignInputLabel>
-                        <LabelForm for="userEmail">
-                            Alterar Email
+                    <AlignInputLabel>
+                        <LabelForm for="userTelefone">
+                            Alterar Telefone
                         </LabelForm>
                         <InputForm name="telefone" id="userTelefone" type="text"
                             value={state.telefone}
@@ -92,6 +103,17 @@ const Configpage = () => {
                             required />
                         <RegisterButton> Alterar </RegisterButton>
                     </AlignInputLabel>
+                    <AlignInputLabel>
+                        <LabelForm for="userDataNasc">
+                            Alterar Data de Nascimento
+                        </LabelForm>
+                        <InputForm name="datanasc" id="userDataNasc" type="text"
+                            value={state.datanasc}
+                            onChange={(e) => stateHandler(e.target.name, e.target.value)}
+                            required />
+                        <RegisterButton> Alterar </RegisterButton>
+                    </AlignInputLabel>
+                    
                     <AlignInputLabel>
                         <LabelForm for="userPassword">
                             Alterar sua senha

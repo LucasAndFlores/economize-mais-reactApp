@@ -11,21 +11,21 @@ function AuthProvider ({ children }) {
     const [ authenticated, setAuthenticated ] = useState(false)
     const [loading, setLoading] = useState(true)
 
-    const history = useHistory()
+    const HasToken = localStorage.getItem("token")
     
     const AuthCallback = useCallback(() => {
-            const HasToken = localStorage.getItem("token")
             if(HasToken) {
             api.defaults.headers.Authorization = `Bearer ${HasToken}`  
             }
 
-            setTimeout(() => setLoading(false), 1000 )  
-    },[])
+            setTimeout(() => setLoading(false), 1000 ) 
+            console.log("Loop fica infinito ?") 
+    },[HasToken])
 
 
     useEffect(() => {
        AuthCallback()
-    }, [])
+    }, [AuthCallback])
 
 
 
